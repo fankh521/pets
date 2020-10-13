@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neno.pets.dao.UserDao">
+    <select id="getAll" resultType="com.neno.pets.model.User">
+       select id,name,breed,sex,age 
+         from ee order by id desc
+    </select>
+
+    <select id="find" resultType="com.neno.pets.model.User">
+        select * from ee where id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.neno.pets.model.User">
+        insert into ee(id,name,breed,sex,age,d_id) values(#{id},#{name},#{breed},#{sex},#{age},#{d_id})
+    </insert>
+
+    <update id="update" parameterType="com.neno.pets.model.User">
+       update ee
+       <set>
+       	   <if test="name != null">name=#{name},</if>
+           <if test="breed != null">breed=#{breed},</if>
+           <if test="sex != null">sex=#{sex},</if>
+           <if test="age != null">age=#{age},</if>
+           <if test="d_id != null">d_id=#{d_id},</if>
+       </set>
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="com.neno.pets.model.User">
+        delete from ee
+        where id=#{id}  
+    </delete>
+</mapper>
