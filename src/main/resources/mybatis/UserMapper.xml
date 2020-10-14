@@ -5,8 +5,7 @@
 
 <mapper namespace="com.neno.pets.dao.UserDao">
     <select id="getAll" resultType="com.neno.pets.model.User">
-       select id,name,breed,sex,age 
-         from ee order by id desc
+       select * from ee 
     </select>
 
     <select id="find" resultType="com.neno.pets.model.User">

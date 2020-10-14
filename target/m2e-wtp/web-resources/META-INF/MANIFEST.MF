@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Built-By: Fan-kh
 Build-Jdk: 14.0.2
-Implementation-Title: apple Maven Webapp
+Implementation-Title: apple
 Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor-Id: com.neno
 Implementation-Vendor: Pivotal Software, Inc.

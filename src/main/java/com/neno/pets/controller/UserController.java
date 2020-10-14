@@ -2,17 +2,21 @@ package com.neno.pets.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.neno.pets.model.User;
 import com.neno.pets.service.UserService;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
 
@@ -24,10 +28,14 @@ public class UserController {
         return "Hello World!";
     }
 
-    @RequestMapping(value={"/getUserList"}, method=RequestMethod.POST)
-    public List<User> getUserList(){
+    @RequestMapping("/getUserList")
+    public ModelAndView getUserList(HttpServletRequest request){
+    	ModelAndView mav = new ModelAndView();
+        List<User> us = userService.getAll();
+        mav.addObject("us",us);
+        mav.setViewName("index");
         System.out.println("查询用户信息。。。。。。。。。");
-        return userService.getAll();
+        return mav;  
     }
 
     @RequestMapping(value={"/addUser"}, method=RequestMethod.POST)
